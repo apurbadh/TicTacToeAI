@@ -69,6 +69,7 @@ class TicTacToe:
                 self.moves.append(move)
                 winner = self.check_win()
                 if winner:
+                    self.display_board()
                     print(f"Player {winner} wins!")
                     break
                 elif self.check_draw():

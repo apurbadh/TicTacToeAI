@@ -56,7 +56,7 @@ class Move:
 
     def getProbability(self):
 
-        return (self.winCount[0])/(self.lossCount[0] + self.winCount[0] if self.lossCount[0] + self.winCount[0] != 0 else 1)
+        return (self.winCount[0] - self.lossCount[0])/self.winCount[0] if self.winCount[0] != 0 else 0
 
     def toJSON(self):
 

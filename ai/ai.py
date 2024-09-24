@@ -72,7 +72,6 @@ class AI:
                 
 
         predicted_move = int(highest['move'])
-        print(f"{int(highest['prob'] * 100)}% chances to win for AI")
         return predicted_move
         
 
