@@ -15,7 +15,9 @@ class AI:
         nextMoves = move[key]['next']
 
         for m in nextMoves:
-            if m[list(m.keys())[0]]['outcome'] == 'lost':
+            mv = m[list(m.keys())[0]]
+            
+            if mv['outcome'] == 'lost':                
                 return True 
             
         return False

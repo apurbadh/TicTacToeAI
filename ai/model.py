@@ -14,6 +14,7 @@ class Move:
         self.lossCount = [0]
 
 
+
     def get_move(self):
         return self.move
     
@@ -53,15 +54,16 @@ class Move:
         # print(self.winCount)
 
 
+    def getProbability(self):
+
+        return (self.winCount[0])/(self.lossCount[0] + self.winCount[0] if self.lossCount[0] + self.winCount[0] != 0 else 1)
 
     def toJSON(self):
 
         return {
             f"{self.move}": {
                 'outcome': self.outcome,
-                'wins': self.winCount[0],
-                'loss': self.lossCount[0],
-                'prob' : (self.winCount[0])/(self.lossCount[0] + self.winCount[0] if self.lossCount[0] + self.winCount[0] != 0 else 1),
+                'prob' : self.getProbability(),
                 'next': [move.toJSON() for move in self.nextMoves]
             }
         }
