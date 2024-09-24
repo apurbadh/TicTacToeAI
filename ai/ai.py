@@ -50,7 +50,7 @@ class AI:
         firstKey = list(data[0].keys())[0]
         highest = {
             'move': firstKey,
-            'prob': data[0][firstKey]['prob']
+            'prob': 0
         }
 
         for move in data:
@@ -64,7 +64,7 @@ class AI:
                 }
                 break
 
-            if not self.check_next_loss(move) and prob > highest['prob']:
+            if not self.check_next_loss(move) and prob >= highest['prob']:
                 highest = {
                     'move': key,
                     'prob': prob
