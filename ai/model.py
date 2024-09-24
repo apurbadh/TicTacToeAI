@@ -51,7 +51,6 @@ class Move:
                 self.lossCount[0] = self.lossCount[0] + lossCount[0]
                 winCount = [0]
                 lossCount = [0]
-        # print(self.winCount)
 
 
     def getProbability(self):
