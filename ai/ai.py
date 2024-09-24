@@ -48,29 +48,29 @@ class AI:
         firstKey = list(data[0].keys())[0]
         highest = {
             'move': firstKey,
-            'wins': data[0][firstKey]['wins']
+            'prob': data[0][firstKey]['prob']
         }
 
         for move in data:
             key = list(move.keys())[0]
-            wins = move[key]['wins']
+            prob = move[key]['prob']
 
             if move[key]['outcome'] == 'win':
                 highest ={
                     'move': key,
-                    'wins': wins
+                    'prob': prob
                 }
                 break
 
-            if not self.check_next_loss(move) and wins > highest['wins']:
+            if not self.check_next_loss(move) and prob > highest['prob']:
                 highest = {
                     'move': key,
-                    'wins': wins
+                    'prob': prob
                 }
                 
 
         predicted_move = int(highest['move'])
-
+        print(f"{int(highest['prob'] * 100)}% chances to win for AI")
         return predicted_move
         
 

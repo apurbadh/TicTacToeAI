@@ -11,12 +11,13 @@ class Move:
         self.outcome = outcome 
         self.nextMoves = [] 
         self.winCount = [0]
+        self.lossCount = [0]
 
 
     def get_move(self):
         return self.move
     
-    def add_move(self, ticTacToe: TicTacToe, prevMoves, winCount = [0]):
+    def add_move(self, ticTacToe: TicTacToe, prevMoves, winCount = [0], lossCount = [0]):
 
         prevMoves.append(self.move)
 
@@ -31,6 +32,7 @@ class Move:
                     winCount[0] = winCount[0] + 1
                 elif ticTacToe.check_win() == 'X':
                     move = Move(i, 'lost')
+                    lossCount[0] = lossCount[0] + 1
 
                 elif ticTacToe.check_draw():
                     move = Move(i, 'draw')
@@ -39,13 +41,15 @@ class Move:
                     prevMoves2 = deepcopy(prevMoves)
                     ttt = deepcopy(ticTacToe)
                     ttt.switch_player()
-                    move.add_move(ttt, prevMoves2, winCount)
+                    move.add_move(ttt, prevMoves2, winCount, lossCount)
 
 
                 self.nextMoves.append(move)
                 ticTacToe = temp
                 self.winCount[0] = self.winCount[0] + winCount[0]
+                self.lossCount[0] = self.lossCount[0] + lossCount[0]
                 winCount = [0]
+                lossCount = [0]
         # print(self.winCount)
 
 
@@ -56,6 +60,8 @@ class Move:
             f"{self.move}": {
                 'outcome': self.outcome,
                 'wins': self.winCount[0],
+                'loss': self.lossCount[0],
+                'prob' : (self.winCount[0])/(self.lossCount[0] + self.winCount[0] if self.lossCount[0] + self.winCount[0] != 0 else 1),
                 'next': [move.toJSON() for move in self.nextMoves]
             }
         }
