@@ -73,6 +73,7 @@ class TicTacToe:
                     print(f"Player {winner} wins!")
                     break
                 elif self.check_draw():
+                    self.display_board()
                     print("It's a draw!")
                     break
                 else:
